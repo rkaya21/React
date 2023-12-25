@@ -10,7 +10,7 @@ const İletişim = () => {
         <div className="row">
           <iframe
             className="map"
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11993.267641772954!2d-72.8480109!3d41.2802068!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x36c6fa619c4f5603!2sMcDonald&#39;s!5e0!3m2!1sen!2s!4v1633364807635!5m2!1sen!2s"
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d59912.28420180021!2d28.9783589!3d41.0082376!3m2!1i1024!2i768!4f13.1!4m3!3e2!4m0!4m0!5e0!3m2!1sen!2str!4v1633364807635"
             allowFullScreen=""
             loading="lazy"
           ></iframe>
