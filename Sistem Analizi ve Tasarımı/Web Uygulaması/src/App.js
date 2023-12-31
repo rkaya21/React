@@ -9,6 +9,7 @@ import Review from "./components/Review";
 import Contact from "./components/Contact";
 import Blog from "./components/Blog";
 import Footer from "./components/Footer";
+import QR from "./components/QR";
 
 const App = () => {
   return (
