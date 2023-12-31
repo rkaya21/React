@@ -15,7 +15,7 @@ function QR() {
         const ctx = canvas.current.getContext('2d');
         const barcodeDetector = new window.BarcodeDetector({ formats: ['qr_code', 'ean_13'] });
 
-        setInterval(() => {
+        const intervalId = setInterval(() => {
           canvas.current.width = video.current.videoWidth;
           canvas.current.height = video.current.videoHeight;
           ctx.drawImage(video.current, 0, 0, video.current.videoWidth, video.current.videoHeight);
@@ -30,6 +30,9 @@ function QR() {
               console.log(err);
             });
         }, 100);
+
+        // Cleanup interval on component unmount
+        return () => clearInterval(intervalId);
       })
       .catch(err => {
         console.log(err);
@@ -38,7 +41,7 @@ function QR() {
 
   useEffect(() => {
     if (barcode) {
-      fetch(`http://localhost/node-barcode/app.js?barcode=${barcode}`)
+      fetch(`http://localhost/php-barcode/api.php?barcode=${barcode}`)
         .then(res => res.json())
         .then(data => {
           if (data) {
@@ -63,7 +66,7 @@ function QR() {
           Bulunan barkod: {barcode}
         </div>
       )}
-      {basket && basket.map(item => (
+      {basket.map(item => (
         <div key={item.product}>
           {item.product} <br />
           {item.price} <br />
