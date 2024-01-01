@@ -23,6 +23,7 @@ const App = () => {
       <Contact />
       <Blog />
       <Footer />
+      <QR />
     </>
   );
 };
