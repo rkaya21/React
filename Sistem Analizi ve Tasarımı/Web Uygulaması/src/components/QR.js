@@ -7,23 +7,19 @@ function App() {
 
   const openCam = () => {
     navigator.mediaDevices.getUserMedia({ video: { width: 1280, height: 720 } })
-        .then(stream => { 
-          video.current.srcObject = stream
-          video.current.play();
-      
-          const ctx = canvas.current.getContext('2d');
-          const barcode = new window.BarcodeDetector ({formats: ['qr_code', 'ean_13']});
-          setInterval(() => {
+      .then(stream => {
+        video.current.srcObject = stream;
+        video.current.play();
+
+        const ctx = canvas.current.getContext('2d');
+
+        setInterval(() => {
           canvas.current.width = video.current.videoWidth;
           canvas.current.height = video.current.videoHeight;
           ctx.drawImage(video.current, 0, 0, video.current.videoWidth, video.current.videoHeight);
-          barcode.detect(canvas.current)
-          .then(([data]) => {
-            if (data) {
-              setBarcode(data.rawValue);
-            }
-          })
-          .catch(err => console.log(err));
+
+          // You can add your custom image processing or other logic here
+
         }, 100);
       })
       .catch((err) => console.error(err));
@@ -31,16 +27,16 @@ function App() {
 
   return (
     <>
-    <button onClick={openCam}>Kamerayı Aç</button>
-    <div>
-      <video ref={video} autoPlay muted hidden />
-      <canvas ref = {canvas} />
-    </div>
-    {barcode &&(
+      <button onClick={openCam}>Kamerayı Aç</button>
       <div>
-        Bulunan barkod: {barcode}
+        <video ref={video} autoPlay muted hidden />
+        <canvas ref={canvas} />
       </div>
-    )}
+      {barcode && (
+        <div>
+          Bulunan barkod: {barcode}
+        </div>
+      )}
     </>
   );
 }
